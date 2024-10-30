@@ -7,9 +7,5 @@ import (
 )
 
 func main() {
-
-	fmt.Println("Hello world")
-
 	lab4.RunLab4Tasks()
-
 }
