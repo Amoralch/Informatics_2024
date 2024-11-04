@@ -1,4 +1,4 @@
-package lab4.go
+package lab4
 
 import (
     "math"
