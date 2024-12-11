@@ -5,5 +5,9 @@ import (
 )
 
 func main() {
+Lab_4
 	lab4.RunLab4Tasks()
+
+	fmt.Println("Огудин Вячеслав Михайлович")
+Ogudin_Vyacheslav
 }
