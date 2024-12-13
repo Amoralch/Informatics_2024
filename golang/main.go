@@ -2,9 +2,9 @@ package main
 
 import (
   "fmt"
-	"isuct.ru/informatics2022/lab4"
-	"isuct.ru/informatics2022/lab6"
-	"isuct.ru/informatics2022/lab7"
+	"isuct.ru/informatics2022/Lab_4"
+	"isuct.ru/informatics2022/Lab_6"
+	"isuct.ru/informatics2022/Lab_7"
 )
 
 func main() {
