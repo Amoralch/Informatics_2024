@@ -1,95 +1,41 @@
-package lab7
+package Lab_7
 
 import (
 	"fmt"
 )
 
 type Product interface {
-	GetPrice() float64
-	SetPrice(float64)
-	ApplyDiscount(float64)
-	GetDetails() string
+	GetPrice() float32
+	Discount(float32)
+	ChangePrice(float32)
+	ChangeCharacteristic(string, string)
 }
 
-type BaseProduct struct {
-	Name  string
-	Price float64
-}
-
-func (p *BaseProduct) GetPrice() float64 {
-	return p.Price
-}
-
-func (p *BaseProduct) SetPrice(price float64) {
-	p.Price = price
-}
-
-func (p *BaseProduct) ApplyDiscount(discount float64) {
-	if discount < 0 || discount > 100 {
-		fmt.Println("Скидка должна быть от 0 до 100%")
-		return
-	}
-	p.Price *= (1 - discount/100)
-}
-
-func (p *BaseProduct) GetDetails() string {
-	return fmt.Sprintf("Название: %s, Цена: %.2f", p.Name, p.Price)
-}
-
-type Electronics struct {
-	BaseProduct
-	Warranty int
-}
-
-func (e *Electronics) GetDetails() string {
-	return fmt.Sprintf("%s, Гарантия: %d года", e.BaseProduct.GetDetails(), e.Warranty)
-}
-
-type Clothing struct {
-	BaseProduct
-	Size  string
-	Color string
-}
-
-func (c *Clothing) GetDetails() string {
-	return fmt.Sprintf("%s, Размер: %s, Цвет: %s", c.BaseProduct.GetDetails(), c.Size, c.Color)
-}
-
-func TotalPrice(products []Product) float64 {
-	var total float64
-	for _, p := range products {
-		total += p.GetPrice()
+func CalculateTotalPrice(products []Product) float32 {
+	var total float32
+	for _, product := range products {
+		total += product.GetPrice()
 	}
 	return total
 }
 
 func RunLab7() {
-	laptop := &Electronics{
-		BaseProduct: BaseProduct{Name: "Ноутбук", Price: 50000},
-		Warranty:    2,
-	}
-	tshirt := &Clothing{
-		BaseProduct: BaseProduct{Name: "Футболка", Price: 1500},
-		Size:        "M",
-		Color:       "Черный",
-	}
+	orange := &Orange{price: 40000, color: "оранжевый", material: "пластик"}
+	apple := &Apple{price: 17000, color: "красный", material: "металл"}
+	bike := &Bike{price: 9000, color: "зелёный", material: "алюминий"}
+	roller := &Roller{price: 12000, color: "синий", material: "пластик"}
 
-	products := []Product{laptop, tshirt}
+	products := []Product{orange, apple, bike, roller}
 
-	fmt.Println("Список товаров:")
-	for _, p := range products {
-		fmt.Println(p.GetDetails())
-	}
+	fmt.Println("Общая стоимость товаров:", CalculateTotalPrice(products), "рублей")
 
-	fmt.Printf("\nОбщая стоимость до скидок: %.2f\n", TotalPrice(products))
+	orange.Discount(25)
+	apple.Discount(50)
+	bike.Discount(10)
+	roller.Discount(20)
 
-	laptop.ApplyDiscount(10)
-	tshirt.ApplyDiscount(20)
-
-	fmt.Println("\nСписок товаров после скидок:")
-	for _, p := range products {
-		fmt.Println(p.GetDetails())
-	}
-
-	fmt.Printf("\nОбщая стоимость после скидок: %.2f\n", TotalPrice(products))
+	orange.ChangeCharacteristic("жёлтый", "дерево")
+	apple.ChangeCharacteristic("зелёный", "пластик")
+	
+	fmt.Println("Общая стоимость товаров после скидок и изменений:", CalculateTotalPrice(products), "рублей")
 }
