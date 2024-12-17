@@ -10,6 +10,6 @@ import (
 func main() {
 	lab4.RunLab4Tasks()
 	lab6.RunLab6()
-	lab7.RunLab7()
+	Lab_7.RunLab7()
 	fmt.Println("Огудин Вячеслав Михайлович")
 }
