@@ -1,7 +1,7 @@
 package main
 
 import (
-  "fmt"
+  	"fmt"
 	"isuct.ru/informatics2022/Lab_4"
 	"isuct.ru/informatics2022/Lab_6"
 	"isuct.ru/informatics2022/Lab_7"
